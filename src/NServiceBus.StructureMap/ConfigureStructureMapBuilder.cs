@@ -1,7 +1,7 @@
 ﻿namespace NServiceBus
 {
+    using global::StructureMap;
     using ObjectBuilder.Common.Config;
-    using ObjectBuilder.StructureMap;
     using StructureMap;
 
     /// <summary>

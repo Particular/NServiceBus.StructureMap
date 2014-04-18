@@ -1,4 +1,4 @@
-namespace NServiceBus.ObjectBuilder.StructureMap
+namespace NServiceBus.StructureMap
 {
     using System;
     using global::StructureMap;

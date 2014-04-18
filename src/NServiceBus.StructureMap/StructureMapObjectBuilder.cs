@@ -1,4 +1,4 @@
-﻿namespace NServiceBus.ObjectBuilder.StructureMap
+﻿namespace NServiceBus.StructureMap
 {
     using System;
     using System.Collections.Generic;
@@ -11,7 +11,7 @@
     /// <summary>
     /// ObjectBuilder implementation for the StructureMap IoC-Container
     /// </summary>
-    public class StructureMapObjectBuilder : Common.IContainer
+    public class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
     {
         IContainer container;
         IDictionary<Type, Instance> configuredInstances = new Dictionary<Type, Instance>();
@@ -35,7 +35,7 @@
         /// Returns a child instance of the container to facilitate deterministic disposal
         /// of all resources built by the child container.
         /// </summary>
-        public Common.IContainer BuildChildContainer()
+        public NServiceBus.ObjectBuilder.Common.IContainer BuildChildContainer()
         {
             return new StructureMapObjectBuilder(container.GetNestedContainer());
         }
