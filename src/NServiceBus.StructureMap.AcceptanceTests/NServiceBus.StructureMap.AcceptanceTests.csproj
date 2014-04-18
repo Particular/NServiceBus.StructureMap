@@ -63,5 +63,11 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\NServiceBus.StructureMap\NServiceBus.StructureMap.csproj">
+      <Project>{c05e5b87-eb74-4a3f-b4fc-afdd28570850}</Project>
+      <Name>NServiceBus.StructureMap</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
