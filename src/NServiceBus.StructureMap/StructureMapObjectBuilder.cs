@@ -12,7 +12,7 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
 
     public StructureMapObjectBuilder()
     {
-        container = ObjectFactory.GetInstance<IContainer>();
+        container = new Container();
     }
 
     public StructureMapObjectBuilder(IContainer container)
