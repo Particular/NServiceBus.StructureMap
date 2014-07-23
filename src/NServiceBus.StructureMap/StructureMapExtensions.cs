@@ -1,6 +1,5 @@
 using System;
 using StructureMap;
-using StructureMap.Graph;
 using StructureMap.Pipeline;
 
 static class StructureMapExtensions
@@ -22,7 +21,7 @@ static class StructureMapExtensions
     /// </summary>
     public static void EnableSetterInjectionFor(this ConfigurationExpression configuration, Type pluginType)
     {
-        PluginCache.AddFilledType(pluginType);
+        configuration.Policies.SetAllProperties(x =>x.TypeMatches(t=>t == pluginType));
     }
 
     // The inner type and interface is just a little trick to
