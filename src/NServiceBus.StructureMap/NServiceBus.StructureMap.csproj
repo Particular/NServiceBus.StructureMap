@@ -25,7 +25,7 @@
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <DocumentationFile>..\..\binaries\NServiceBus.StructureMap.XML</DocumentationFile>
-    <NoWarn>1591,1573</NoWarn>
+    <NoWarn>1573</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
