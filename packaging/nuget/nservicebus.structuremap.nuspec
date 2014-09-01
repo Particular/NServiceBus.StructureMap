@@ -3,7 +3,7 @@
   <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
     <id>NServiceBus.StructureMap</id>
     <title>NServiceBus StructureMap</title>
-    <version>4.0.0-alpha0</version>
+    <version>$version$</version>
     <authors>NServiceBus Ltd</authors>
     <owners>Udi Dahan, Andreas Ohlund, John Simons</owners>
     <licenseUrl>http://particular.net/LicenseAgreement</licenseUrl>
@@ -14,9 +14,12 @@
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2010-2014 NServiceBus. All rights reserved</copyright>
     <tags>nservicebus servicebus msmq cqrs publish subscribe</tags>
-    <dependencies/>
+    <dependencies>
+      <dependency id="NServiceBus" version="[5.0.0-beta0003, 6.0.0)" />
+      <dependency id="StructureMap" version="[3.0.0, 4.0.0)" />
+    </dependencies>
   </metadata>
   <files>
-    <file src="..\..\binaries\NServiceBus.StructureMap.???" target="lib\net40" />
+    <file src="..\..\binaries\NServiceBus.StructureMap.???" target="lib\net45" />
   </files>
 </package>
