@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using StructureMap;
-using StructureMap.Graph;
 using StructureMap.Pipeline;
-using StructureMap.TypeRules;
 using NServiceBus;
 
 class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
@@ -14,7 +12,7 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
 
     public StructureMapObjectBuilder()
     {
-        container = ObjectFactory.GetInstance<IContainer>();
+        container = new Container();
     }
 
     public StructureMapObjectBuilder(IContainer container)
@@ -70,14 +68,7 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
                 throw new InvalidOperationException("Cannot configure property before the component has been configured. Please call 'Configure' first.");
             }
 
-            if (value.GetType().IsSimple())
-            {
-                configuredInstance.WithProperty(property).EqualTo(value);
-            }
-            else
-            {
-                configuredInstance.Child(property).Is(value);
-            }
+            configuredInstance.Dependencies.Add(property, component, value);
         }
     }
 
@@ -130,13 +121,13 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
         }
 
         var lifecycle = GetLifecycleFrom(dependencyLifecycle);
-        LambdaInstance<T> lambdaInstance = null;
+        LambdaInstance<T,T> lambdaInstance = null;
 
         container.Configure(x =>
             {
                 lambdaInstance = x.For<T>()
                                   .LifecycleIs(lifecycle)
-                                  .Use(componentFactory);
+                                  .Use("Custom constructor func",componentFactory);
 
                 x.EnableSetterInjectionFor(pluginType);
 
@@ -156,10 +147,13 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
 
     public void RegisterSingleton(Type lookupType, object instance)
     {
-        container.Configure(x => x.For(lookupType)
+        container.Configure(x => {
+            x.For(lookupType)
             .Singleton()
-            .Use(instance));
-        PluginCache.AddFilledType(lookupType);
+            .Use(instance);
+
+            x.EnableSetterInjectionFor(lookupType);
+        });
     }
 
     public bool HasComponent(Type componentType)
