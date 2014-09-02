@@ -7,7 +7,7 @@
     /// <summary>
     /// StructureMap Container
     /// </summary>
-    public class StructureMap : ContainerDefinition
+    public class StructureMapBuilder : ContainerDefinition
     {
         /// <summary>
         ///     Implementers need to new up a new container.
