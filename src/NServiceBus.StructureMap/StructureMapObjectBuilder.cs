@@ -98,7 +98,7 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
 
             foreach (var implementedInterface in interfaces)
             {
-                x.RegisterAdditionalInterfaceForPluginType(implementedInterface, component, lifecycle);
+                x.For(implementedInterface).Use(c => c.GetInstance(component));
 
                 x.EnableSetterInjectionFor(implementedInterface);
             }
@@ -135,7 +135,8 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
 
                 foreach (var implementedInterface in GetAllInterfacesImplementedBy(pluginType))
                 {
-                    x.RegisterAdditionalInterfaceForPluginType(implementedInterface, pluginType, lifecycle);
+                    x.For(implementedInterface).Use(c => c.GetInstance<T>());
+
                     x.EnableSetterInjectionFor(implementedInterface);
                 }
             }
