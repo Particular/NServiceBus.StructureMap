@@ -68,7 +68,7 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
                 throw new InvalidOperationException("Cannot configure property before the component has been configured. Please call 'Configure' first.");
             }
 
-            configuredInstance.Dependencies.Add(property, component, value);
+            configuredInstance.Dependencies.Add(property,value);
         }
     }
 
@@ -94,9 +94,11 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
 
             x.EnableSetterInjectionFor(component);
 
-            foreach (var implementedInterface in GetAllInterfacesImplementedBy(component))
+            var interfaces = GetAllInterfacesImplementedBy(component).ToList();
+
+            foreach (var implementedInterface in interfaces)
             {
-                x.RegisterAdditionalInterfaceForPluginType(implementedInterface, component, lifecycle);
+                x.For(implementedInterface).Use(c => c.GetInstance(component));
 
                 x.EnableSetterInjectionFor(implementedInterface);
             }
@@ -121,19 +123,20 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
         }
 
         var lifecycle = GetLifecycleFrom(dependencyLifecycle);
-        LambdaInstance<T,T> lambdaInstance = null;
+        LambdaInstance<T, T> lambdaInstance = null;
 
         container.Configure(x =>
             {
                 lambdaInstance = x.For<T>()
                                   .LifecycleIs(lifecycle)
-                                  .Use("Custom constructor func",componentFactory);
+                                  .Use("Custom constructor func", componentFactory);
 
                 x.EnableSetterInjectionFor(pluginType);
 
                 foreach (var implementedInterface in GetAllInterfacesImplementedBy(pluginType))
                 {
-                    x.RegisterAdditionalInterfaceForPluginType(implementedInterface, pluginType, lifecycle);
+                    x.For(implementedInterface).Use(c => c.GetInstance<T>());
+
                     x.EnableSetterInjectionFor(implementedInterface);
                 }
             }
@@ -147,7 +150,8 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
 
     public void RegisterSingleton(Type lookupType, object instance)
     {
-        container.Configure(x => {
+        container.Configure(x =>
+        {
             x.For(lookupType)
             .Singleton()
             .Use(instance);
@@ -183,7 +187,7 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
 
     static IEnumerable<Type> GetAllInterfacesImplementedBy(Type t)
     {
-        return t.GetInterfaces().Where(x =>!x.FullName.StartsWith("System."));
+        return t.GetInterfaces().Where(x => !x.FullName.StartsWith("System."));
     }
 
 }
