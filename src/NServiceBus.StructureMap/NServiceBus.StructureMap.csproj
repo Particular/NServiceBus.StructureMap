@@ -61,7 +61,7 @@
     <Compile Include="StructureMapBuilder.cs" />
     <Compile Include="StructureMapExtensions.cs" />
     <Compile Include="StructureMapObjectBuilder.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
