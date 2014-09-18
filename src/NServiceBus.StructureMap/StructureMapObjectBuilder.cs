@@ -98,7 +98,9 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
 
             foreach (var implementedInterface in interfaces)
             {
-                x.For(implementedInterface).Use(c => c.GetInstance(component));
+                x.For(implementedInterface)
+                    .LifecycleIs(lifecycle)
+                    .Use(c => c.GetInstance(component));
 
                 x.EnableSetterInjectionFor(implementedInterface);
             }

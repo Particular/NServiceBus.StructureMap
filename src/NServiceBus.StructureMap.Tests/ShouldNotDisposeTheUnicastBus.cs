@@ -22,10 +22,10 @@
                 childBuilder.Build(typeof(DependsOnIBus));
 
                 //this one is ok
-                //childBuilder.Build(typeof(MyBus));
+                childBuilder.Build(typeof(MyBus));
 
                 //but this one fails
-                //childBuilder.Build(typeof(IBus2));
+                childBuilder.Build(typeof(IBus2));
             }
 
             Assert.False(((MyBus)builder.Build(typeof(MyBus))).Disposed);
