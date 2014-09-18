@@ -12,7 +12,7 @@
         public void Should_trigger_the_callback_when_the_response_comes_back()
         {
             Scenario.Define<Context>()
-                    .WithEndpoint<EndpointWithLocalCallback>(b=>b.Given(
+                    .WithEndpoint<CallbackEndpt>(b=>b.Given(
                         (bus,context)=>bus.SendLocal(new MyRequest()).Register(r =>
                         {
                             Assert.True(context.HandlerGotTheRequest);
@@ -35,9 +35,9 @@
             public bool CallbackFired { get; set; }
         }
 
-        public class EndpointWithLocalCallback : EndpointConfigurationBuilder
+        public class CallbackEndpt : EndpointConfigurationBuilder
         {
-            public EndpointWithLocalCallback()
+            public CallbackEndpt()
             {
                 EndpointSetup<DefaultServer>();
             }
