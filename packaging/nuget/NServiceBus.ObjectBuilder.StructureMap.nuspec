@@ -20,6 +20,6 @@
     </dependencies>
   </metadata>
   <files>
-    <file src="..\..\binaries\NServiceBus.StructureMap.???" target="lib\net45" />
+    <file src="..\..\binaries\NServiceBus.ObjectBuilder.StructureMap.???" target="lib\net45" />
   </files>
 </package>

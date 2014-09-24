@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NServiceBus.StructureMap</RootNamespace>
-    <AssemblyName>NServiceBus.StructureMap</AssemblyName>
+    <AssemblyName>NServiceBus.ObjectBuilder.StructureMap</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -24,7 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>..\..\binaries\NServiceBus.StructureMap.XML</DocumentationFile>
+    <DocumentationFile>..\..\binaries\NServiceBus.ObjectBuilder.StructureMap.xml</DocumentationFile>
     <NoWarn>1573</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Prefer32Bit>false</Prefer32Bit>
@@ -37,7 +37,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>..\..\binaries\NServiceBus.StructureMap.XML</DocumentationFile>
+    <DocumentationFile>..\..\binaries\NServiceBus.ObjectBuilder.StructureMap.xml</DocumentationFile>
     <NoWarn>1591,1573</NoWarn>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <Prefer32Bit>false</Prefer32Bit>
@@ -68,6 +68,9 @@
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\packaging\nuget\NServiceBus.ObjectBuilder.StructureMap.nuspec">
+      <Link>NServiceBus.ObjectBuilder.StructureMap.nuspec</Link>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
