@@ -1,36 +1,27 @@
-﻿namespace NServiceBus
+﻿#pragma warning disable 1591
+// ReSharper disable UnusedParameter.Global
+namespace NServiceBus
 {
     using System;
     using ObjectBuilder.Common;
 
-    /// <summary>
-    /// Contains extension methods to <see cref="Configure"/>.
-    /// </summary>
+    [ObsoleteEx(RemoveInVersion = "6.0", TreatAsErrorFromVersion = "5.0")]
     public static class ConfigureStructureMapBuilder
     {
-        /// <summary>
-        /// Remove
-        /// </summary>
-        /// <param name="config"></param>
-        /// <returns></returns>
-        [Obsolete("Replace with Configure.With(c=>.UseContainer<NServiceBus.StructureMap>())", true)]
-        // ReSharper disable UnusedParameter.Global
+        [ObsoleteEx(
+            Message = "Use `configuration.UseContainer<StructureMapBuilder>()`, where `configuration` is an instance of type `BusConfiguration`.",
+            TreatAsErrorFromVersion = "5.0",
+            RemoveInVersion = "6.0")]
         public static Configure StructureMapBuilder(this Configure config)
-        // ReSharper restore UnusedParameter.Global
         {
             throw new NotImplementedException();
         }
 
-        /// <summary>
-        /// Remove
-        /// </summary>
-        /// <param name="config"></param>
-        /// <param name="container"></param>
-        /// <returns></returns>
-        [Obsolete("Replace with Configure.With(c => c.UseContainer<NServiceBus.StructureMap>(b => b.ExistingContainer(container)))", true)]
-        // ReSharper disable UnusedParameter.Global
+        [ObsoleteEx(
+            Message = "Use `configuration.UseContainer<StructureMapBuilder>(b => b.ExistingContainer(container))`, where `configuration` is an instance of type `BusConfiguration`.",
+            TreatAsErrorFromVersion = "5.0",
+            RemoveInVersion = "6.0")]
         public static Configure StructureMapBuilder(this Configure config, IContainer container)
-        // ReSharper restore UnusedParameter.Global
         {
             throw new NotImplementedException();
 

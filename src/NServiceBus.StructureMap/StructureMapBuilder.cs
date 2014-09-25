@@ -17,11 +17,9 @@
         public override ObjectBuilder.Common.IContainer CreateContainer(ReadOnlySettings settings)
         {
             IContainer existingContainer;
-
             if (settings.TryGet("ExistingContainer", out existingContainer))
             {
                 return new StructureMapObjectBuilder(existingContainer);
-
             }
 
             return new StructureMapObjectBuilder();
