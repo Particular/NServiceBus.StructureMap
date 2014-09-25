@@ -1,13 +1,19 @@
-using NServiceBus.Container;
-using StructureMap;
-
-static class StructureMapExtensions
+namespace NServiceBus
 {
+    using NServiceBus.Container;
+    using StructureMap;
+
     /// <summary>
-    /// Tells StructureMap to do setter injection for the given type
+    /// Extension to pass an existing StructureMap <see cref="IContainer"/> instance.
     /// </summary>
-    public static void ExistingContainer(this ContainerCustomizations customizations, IContainer container)
+    public static class StructureMapExtensions
     {
-        customizations.Settings.Set("ExistingContainer", container);
+        /// <summary>
+        /// Use the a pre-configured <see cref="IContainer"/>.
+        /// </summary>
+        public static void ExistingContainer(this ContainerCustomizations customizations, IContainer container)
+        {
+            customizations.Settings.Set("ExistingContainer", container);
+        }
     }
 }
