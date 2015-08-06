@@ -1,16 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBus.StructureMap", "NServiceBus.StructureMap\NServiceBus.StructureMap.csproj", "{C05E5B87-EB74-4A3F-B4FC-AFDD28570850}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBus.StructureMap.AcceptanceTests", "NServiceBus.StructureMap.AcceptanceTests\NServiceBus.StructureMap.AcceptanceTests.csproj", "{FB342C36-9924-4E24-A484-CEE0C770BDBF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{9DDB4867-CB2D-4015-B80F-D08CB41FEB13}"
-	ProjectSection(SolutionItems) = preProject
-		.nuget\packages.config = .nuget\packages.config
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBus.StructureMap.Tests", "NServiceBus.StructureMap.Tests\NServiceBus.StructureMap.Tests.csproj", "{3D880FCA-D2DA-4AB9-8017-BA8B7C86D359}"
 EndProject
