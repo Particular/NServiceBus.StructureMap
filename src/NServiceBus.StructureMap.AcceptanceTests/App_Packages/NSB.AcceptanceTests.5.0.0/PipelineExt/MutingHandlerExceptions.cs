@@ -18,7 +18,7 @@ namespace NServiceBus.AcceptanceTests.PipelineExt
         {
             var context = new Context();
             Scenario.Define(context)
-                .WithEndpoint<ExceptionMutingEndpoint>(b => b.Given(bus => bus.SendLocal(new MessageThatWillBlowUpButExWillBeMuted())))
+                .WithEndpoint<EndpointWithCustomExceptionMuting>(b => b.Given(bus => bus.SendLocal(new MessageThatWillBlowUpButExWillBeMuted())))
                 .WithEndpoint<AuditSpy>()
                 .Done(c => c.IsMessageHandlingComplete)
                 .Run();
@@ -26,9 +26,9 @@ namespace NServiceBus.AcceptanceTests.PipelineExt
             Assert.IsTrue(context.MessageAudited);
         }
 
-        public class ExceptionMutingEndpoint : EndpointConfigurationBuilder
+        public class EndpointWithCustomExceptionMuting : EndpointConfigurationBuilder
         {
-            public ExceptionMutingEndpoint()
+            public EndpointWithCustomExceptionMuting()
             {
                 EndpointSetup<DefaultServer>()
                     .AuditTo<AuditSpy>();
