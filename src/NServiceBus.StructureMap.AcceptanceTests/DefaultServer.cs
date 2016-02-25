@@ -9,7 +9,6 @@
     using NServiceBus;
     using NServiceBus.AcceptanceTesting.Customization;
     using NServiceBus.Config.ConfigurationSource;
-    using NServiceBus.Configuration.AdvanceExtensibility;
     using NServiceBus.Features;
     using NServiceBus.Hosting.Helpers;
     using NServiceBus.ObjectBuilder;
@@ -28,10 +27,8 @@
             this.typesToInclude = typesToInclude;
         }
 
-        public async Task<BusConfiguration> GetConfiguration(RunDescriptor runDescriptor, EndpointConfiguration endpointConfiguration, IConfigurationSource configSource, Action<BusConfiguration> configurationBuilderCustomization)
+        public Task<BusConfiguration> GetConfiguration(RunDescriptor runDescriptor, EndpointConfiguration endpointConfiguration, IConfigurationSource configSource, Action<BusConfiguration> configurationBuilderCustomization)
         {
-            var settings = runDescriptor.Settings;            
-
             var types = GetTypesScopedByTestClass(endpointConfiguration);
 
             typesToInclude.AddRange(types);
@@ -46,25 +43,15 @@
             builder.DisableFeature<TimeoutManager>();
             builder.DisableFeature<SecondLevelRetries>();
             builder.DisableFeature<FirstLevelRetries>();
+            builder.UsePersistence<InMemoryPersistence>();
+            builder.UseContainer<StructureMapBuilder>();
 
-            await builder.DefineTransport(settings, endpointConfiguration.BuilderType);
-            builder.DefineTransactions(settings);
-            builder.DefineBuilder(settings);
             builder.RegisterComponents(r => { RegisterInheritanceHierarchyOfContextOnContainer(runDescriptor, r); });
 
-            var serializer = settings.GetOrNull("Serializer");
-
-            if (serializer != null)
-            {
-                builder.UseSerialization(Type.GetType(serializer));
-            }
-            await builder.DefinePersistence(settings);
-
-            builder.GetSettings().SetDefault("ScaleOut.UseSingleBrokerQueue", true);
             configurationBuilderCustomization(builder);
 
 
-            return builder;
+            return Task.FromResult(builder);
         }
 
         static void RegisterInheritanceHierarchyOfContextOnContainer(RunDescriptor runDescriptor, IConfigureComponents r)

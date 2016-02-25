@@ -1,55 +1,58 @@
-﻿namespace NServiceBus.AcceptanceTests.Performance.TimeToBeReceived
+﻿namespace NServiceBus.AcceptanceTests.Basic
 {
-    using System;
     using System.Threading.Tasks;
-    using NServiceBus.AcceptanceTesting;
-    using NServiceBus.AcceptanceTests.EndpointTemplates;
+    using AcceptanceTesting;
+    using EndpointTemplates;
     using NUnit.Framework;
 
-    public class When_TimeToBeReceived_has_expired_convention : NServiceBusAcceptanceTest
+    public class When_declaring_a_public_property : NServiceBusAcceptanceTest
     {
         [Test]
-        public async Task Message_should_not_be_received()
+        public async Task Should_be_set_via_prop_injection()
         {
             var context = await Scenario.Define<Context>()
                     .WithEndpoint<Endpoint>(b => b.When((bus, c) => bus.SendLocal(new MyMessage())))
-                    .Run(TimeSpan.FromSeconds(10));
+                    .Done(c => c.WasCalled)
+                    .Run();
 
-            Assert.IsFalse(context.WasCalled);
+            Assert.IsTrue(context.PropertyWasInjected);
         }
 
         public class Context : ScenarioContext
         {
             public bool WasCalled { get; set; }
+            public bool PropertyWasInjected { get; set; }
         }
 
         public class Endpoint : EndpointConfigurationBuilder
         {
             public Endpoint()
             {
-                EndpointSetup<DefaultServer>(c=>c.Conventions().DefiningTimeToBeReceivedAs(messageType =>
-                {
-                    if (messageType == typeof(MyMessage))
-                    {
-                        return TimeSpan.Parse("00:00:00.0000001");
-                    }
-                    return TimeSpan.MaxValue;
-                }));
+                EndpointSetup<DefaultServer>(config => config.RegisterComponents(c => c.ConfigureComponent<MyPropDependency>(DependencyLifecycle.SingleInstance)));
             }
 
             public class MyMessageHandler : IHandleMessages<MyMessage>
             {
                 public Context Context { get; set; }
 
+                public MyPropDependency MyPropDependency { get; set; }
+
                 public Task Handle(MyMessage message, IMessageHandlerContext context)
                 {
+                    Context.PropertyWasInjected = MyPropDependency != null;
                     Context.WasCalled = true;
                     return Task.FromResult(0);
                 }
             }
+            public class MyPropDependency
+            {
+            }
         }
-        public class MyMessage : IMessage
+        
+        public class MyMessage : ICommand
         {
         }
     }
+
+
 }
