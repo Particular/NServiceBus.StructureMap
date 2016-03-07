@@ -45,29 +45,6 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
         return container.GetAllInstances(typeToBuild).Cast<object>();
     }
 
-    public void ConfigureProperty(Type component, string property, object value)
-    {
-        if (value == null)
-        {
-            return;
-        }
-
-        lock (configuredInstances)
-        {
-            Instance instance;
-            configuredInstances.TryGetValue(component, out instance);
-
-            var configuredInstance = instance as ConfiguredInstance;
-
-            if (configuredInstance == null)
-            {
-                throw new InvalidOperationException("Cannot configure property before the component has been configured. Please call 'Configure' first.");
-            }
-
-            configuredInstance.Dependencies.Add(property,value);
-        }
-    }
-
     public void Configure(Type component, DependencyLifecycle dependencyLifecycle)
     {
         lock (configuredInstances)
