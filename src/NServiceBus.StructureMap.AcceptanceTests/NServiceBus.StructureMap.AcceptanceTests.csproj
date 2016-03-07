@@ -86,6 +86,7 @@
   <ItemGroup>
     <Compile Include="DefaultServer.cs" />
     <Compile Include="NServiceBusAcceptanceTest.cs" />
+    <Compile Include="When_setting_properties_explicitly_via_the_container.cs" />
     <Compile Include="When_declaring_a_public_property.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -6,30 +6,39 @@
     using NServiceBus.AcceptanceTests.EndpointTemplates;
     using NUnit.Framework;
 
-    public class When_declaring_a_public_property : NServiceBusAcceptanceTest
+    public class When_setting_properties_explicitly_via_the_container : NServiceBusAcceptanceTest
     {
         [Test]
-        public async Task Should_be_set_via_prop_injection()
+        public async Task Should_use_provide_values()
         {
+            var simpleValue = "SomeValue";
+
             var context = await Scenario.Define<Context>()
-                    .WithEndpoint<Endpoint>(b => b.When((bus, c) => bus.SendLocal(new MyMessage())))
+                    .WithEndpoint<Endpoint>(b =>
+                    {
+                        b.CustomConfig(c => c.RegisterComponents(r => r.ConfigureComponent(builder => new Endpoint.MyMessageHandler(builder.Build<Context>())
+                        {
+                            MySimpleDependency = simpleValue
+                        }, DependencyLifecycle.InstancePerCall)));
+                        b.When((bus, c) => bus.SendLocal(new MyMessage()));
+                    })
                     .Done(c => c.WasCalled)
                     .Run();
 
-            Assert.IsTrue(context.PropertyWasInjected);
+            Assert.AreEqual(simpleValue, context.PropertyValue);
         }
 
         public class Context : ScenarioContext
         {
             public bool WasCalled { get; set; }
-            public bool PropertyWasInjected { get; set; }
+            public string PropertyValue { get; set; }
         }
 
         public class Endpoint : EndpointConfigurationBuilder
         {
             public Endpoint()
             {
-                EndpointSetup<DefaultServer>(config => config.RegisterComponents(c => c.ConfigureComponent<MyPropDependency>(DependencyLifecycle.SingleInstance)));
+                EndpointSetup<DefaultServer>();
             }
 
             public class MyMessageHandler : IHandleMessages<MyMessage>
@@ -39,11 +48,11 @@
                     this.testContext = testContext;
                 }
 
-                public MyPropDependency MyPropDependency { get; set; }
+                public string MySimpleDependency { get; set; }
 
                 public Task Handle(MyMessage message, IMessageHandlerContext context)
                 {
-                    testContext.PropertyWasInjected = MyPropDependency != null;
+                    testContext.PropertyValue = MySimpleDependency;
                     testContext.WasCalled = true;
                     return Task.FromResult(0);
                 }
@@ -54,7 +63,7 @@
             {
             }
         }
-        
+
         public class MyMessage : ICommand
         {
         }

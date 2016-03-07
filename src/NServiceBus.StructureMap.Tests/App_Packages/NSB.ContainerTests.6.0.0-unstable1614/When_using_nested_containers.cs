@@ -60,7 +60,7 @@ namespace NServiceBus.ContainerTests
                 Assert.AreNotSame(instance1, instance2);
             }
         }
-
+        
         [Test]
         public void Instance_per_call_components_should_not_be_shared_across_child_containers()
         {
