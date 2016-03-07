@@ -49,19 +49,6 @@ namespace NServiceBus.ContainerTests
         }
 
         [Test]
-        [Explicit]
-        public void A_registration_should_update_default_component_for_interface()
-        {
-            using (var builder = TestContainerBuilder.ConstructBuilder())
-            {
-                builder.Configure(typeof(SomeClass), DependencyLifecycle.InstancePerCall);
-                builder.Configure(typeof(SomeOtherClass), DependencyLifecycle.InstancePerCall);
-
-                Assert.IsInstanceOf<SomeOtherClass>(builder.Build(typeof(ISomeInterface)));
-            }
-        }
-
-        [Test]
         public void Register_singleton_should_be_supported()
         {
             using (var builder = TestContainerBuilder.ConstructBuilder())
@@ -130,13 +117,12 @@ namespace NServiceBus.ContainerTests
         }
 
         [Test]
-        [Explicit("Not supported by structure map")]
         public void Setter_dependencies_should_be_supported_when_resolving_interfaces()
         {
             using (var builder = TestContainerBuilder.ConstructBuilder())
             {
                 builder.Configure(typeof(SomeClass), DependencyLifecycle.InstancePerCall);
-                builder.RegisterSingleton(typeof(IWithSetterDependencies), new ClassWithSetterDependencies());
+                builder.Configure(typeof(ClassWithSetterDependencies), DependencyLifecycle.SingleInstance);
 
                 var component = (ClassWithSetterDependencies)builder.Build(typeof(IWithSetterDependencies));
                 Assert.NotNull(component.ConcreteDependency, "Concrete classed should be property injected");
