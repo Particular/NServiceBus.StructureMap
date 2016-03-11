@@ -181,7 +181,7 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
             case DependencyLifecycle.SingleInstance:
                 return new SingletonLifecycle();
             case DependencyLifecycle.InstancePerUnitOfWork:
-                return null;//null means the default lifecycle which is transient
+                return new ContainerLifecycle();//null means the default lifecycle which is transient
         }
 
         throw new ArgumentException("Unhandled lifecycle - " + dependencyLifecycle);

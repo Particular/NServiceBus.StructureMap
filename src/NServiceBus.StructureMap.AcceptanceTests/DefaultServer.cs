@@ -27,13 +27,13 @@
             this.typesToInclude = typesToInclude;
         }
 
-        public Task<BusConfiguration> GetConfiguration(RunDescriptor runDescriptor, EndpointConfiguration endpointConfiguration, IConfigurationSource configSource, Action<BusConfiguration> configurationBuilderCustomization)
+        public Task<EndpointConfiguration> GetConfiguration(RunDescriptor runDescriptor, EndpointCustomizationConfiguration endpointConfiguration, IConfigurationSource configSource, Action<EndpointConfiguration> configurationBuilderCustomization)
         {
             var types = GetTypesScopedByTestClass(endpointConfiguration);
 
             typesToInclude.AddRange(types);
 
-            var builder = new BusConfiguration();
+            var builder = new EndpointConfiguration();
 
             builder.EndpointName(endpointConfiguration.EndpointName);
             builder.TypesToIncludeInScan(typesToInclude);
@@ -64,7 +64,7 @@
             }
         }
 
-        static IEnumerable<Type> GetTypesScopedByTestClass(EndpointConfiguration endpointConfiguration)
+        static IEnumerable<Type> GetTypesScopedByTestClass(EndpointCustomizationConfiguration endpointConfiguration)
         {
             var assemblies = new AssemblyScanner().GetScannableAssemblies();
 
@@ -103,6 +103,5 @@
                 yield return nestedType;
             }
         }
-
     }
 }
