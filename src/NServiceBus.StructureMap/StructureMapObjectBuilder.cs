@@ -25,10 +25,6 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
         //Injected at compile time
     }
 
-    /// <summary>
-    /// Returns a child instance of the container to facilitate deterministic disposal
-    /// of all resources built by the child container.
-    /// </summary>
     public NServiceBus.ObjectBuilder.Common.IContainer BuildChildContainer()
     {
         return new StructureMapObjectBuilder(container.GetNestedContainer());
@@ -181,7 +177,7 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
             case DependencyLifecycle.SingleInstance:
                 return new SingletonLifecycle();
             case DependencyLifecycle.InstancePerUnitOfWork:
-                return new ContainerLifecycle();//null means the default lifecycle which is transient
+                return new ContainerLifecycle();
         }
 
         throw new ArgumentException("Unhandled lifecycle - " + dependencyLifecycle);
