@@ -12,9 +12,9 @@
         public async Task Should_be_set_via_prop_injection()
         {
             var context = await Scenario.Define<Context>()
-                    .WithEndpoint<Endpoint>(b => b.When((bus, c) => bus.SendLocal(new MyMessage())))
-                    .Done(c => c.WasCalled)
-                    .Run();
+                .WithEndpoint<Endpoint>(b => b.When((bus, c) => bus.SendLocal(new MyMessage())))
+                .Done(c => c.WasCalled)
+                .Run();
 
             Assert.IsTrue(context.PropertyWasInjected);
         }
@@ -50,11 +50,12 @@
 
                 Context testContext;
             }
+
             public class MyPropDependency
             {
             }
         }
-        
+
         public class MyMessage : ICommand
         {
         }

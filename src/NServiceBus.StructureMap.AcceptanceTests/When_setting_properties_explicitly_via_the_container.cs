@@ -14,16 +14,16 @@
             var simpleValue = "SomeValue";
 
             var context = await Scenario.Define<Context>()
-                    .WithEndpoint<Endpoint>(b =>
+                .WithEndpoint<Endpoint>(b =>
+                {
+                    b.CustomConfig(c => c.RegisterComponents(r => r.ConfigureComponent(builder => new Endpoint.MyMessageHandler(builder.Build<Context>())
                     {
-                        b.CustomConfig(c => c.RegisterComponents(r => r.ConfigureComponent(builder => new Endpoint.MyMessageHandler(builder.Build<Context>())
-                        {
-                            MySimpleDependency = simpleValue
-                        }, DependencyLifecycle.InstancePerCall)));
-                        b.When((bus, c) => bus.SendLocal(new MyMessage()));
-                    })
-                    .Done(c => c.WasCalled)
-                    .Run();
+                        MySimpleDependency = simpleValue
+                    }, DependencyLifecycle.InstancePerCall)));
+                    b.When((bus, c) => bus.SendLocal(new MyMessage()));
+                })
+                .Done(c => c.WasCalled)
+                .Run();
 
             Assert.AreEqual(simpleValue, context.PropertyValue);
         }
@@ -59,6 +59,7 @@
 
                 Context testContext;
             }
+
             public class MyPropDependency
             {
             }

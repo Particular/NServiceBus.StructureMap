@@ -1,21 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using NServiceBus;
 using StructureMap;
 using StructureMap.Pipeline;
-using NServiceBus;
+using IContainer = NServiceBus.ObjectBuilder.Common.IContainer;
 
-class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
+class StructureMapObjectBuilder : IContainer
 {
-    IContainer container;
-    IDictionary<Type, Instance> configuredInstances = new Dictionary<Type, Instance>();
-
     public StructureMapObjectBuilder()
     {
         container = new Container();
     }
 
-    public StructureMapObjectBuilder(IContainer container)
+    public StructureMapObjectBuilder(StructureMap.IContainer container)
     {
         this.container = container;
     }
@@ -25,7 +23,7 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
         //Injected at compile time
     }
 
-    public NServiceBus.ObjectBuilder.Common.IContainer BuildChildContainer()
+    public IContainer BuildChildContainer()
     {
         return new StructureMapObjectBuilder(container.GetNestedContainer());
     }
@@ -62,8 +60,8 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
         container.Configure(x =>
         {
             configuredInstance = x.For(component)
-                 .LifecycleIs(lifecycle)
-                 .Use(component);
+                .LifecycleIs(lifecycle)
+                .Use(component);
 
             x.EnableSetterInjectionFor(component);
 
@@ -101,20 +99,20 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
         LambdaInstance<T, T> lambdaInstance = null;
 
         container.Configure(x =>
+        {
+            lambdaInstance = x.For<T>()
+                .LifecycleIs(lifecycle)
+                .Use("Custom constructor func", componentFactory);
+
+            x.EnableSetterInjectionFor(pluginType);
+
+            foreach (var implementedInterface in GetAllInterfacesImplementedBy(pluginType))
             {
-                lambdaInstance = x.For<T>()
-                                  .LifecycleIs(lifecycle)
-                                  .Use("Custom constructor func", componentFactory);
+                x.For(implementedInterface).Use(c => c.GetInstance<T>());
 
-                x.EnableSetterInjectionFor(pluginType);
-
-                foreach (var implementedInterface in GetAllInterfacesImplementedBy(pluginType))
-                {
-                    x.For(implementedInterface).Use(c => c.GetInstance<T>());
-
-                    x.EnableSetterInjectionFor(implementedInterface);
-                }
+                x.EnableSetterInjectionFor(implementedInterface);
             }
+        }
             );
 
         lock (configuredInstances)
@@ -128,8 +126,8 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
         container.Configure(x =>
         {
             x.For(lookupType)
-            .Singleton()
-            .Use(instance);
+                .Singleton()
+                .Use(instance);
 
             x.EnableSetterInjectionFor(lookupType);
         });
@@ -142,7 +140,6 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
 
     public void Release(object instance)
     {
-
     }
 
     static ILifecycle GetLifecycleFrom(DependencyLifecycle dependencyLifecycle)
@@ -165,4 +162,6 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
         return t.GetInterfaces().Where(x => !x.FullName.StartsWith("System."));
     }
 
+    StructureMap.IContainer container;
+    IDictionary<Type, Instance> configuredInstances = new Dictionary<Type, Instance>();
 }
