@@ -5,9 +5,8 @@
     using System.Linq;
     using System.Reflection;
     using System.Threading.Tasks;
-    using AcceptanceTesting.Support;
-    using NServiceBus;
     using NServiceBus.AcceptanceTesting.Customization;
+    using NServiceBus.AcceptanceTesting.Support;
     using NServiceBus.Config.ConfigurationSource;
     using NServiceBus.Features;
     using NServiceBus.Hosting.Helpers;
@@ -15,8 +14,6 @@
 
     public class DefaultServer : IEndpointSetupTemplate
     {
-        List<Type> typesToInclude;
-
         public DefaultServer()
         {
             typesToInclude = new List<Type>();
@@ -33,9 +30,8 @@
 
             typesToInclude.AddRange(types);
 
-            var builder = new EndpointConfiguration();
+            var builder = new EndpointConfiguration(endpointConfiguration.EndpointName);
 
-            builder.EndpointName(endpointConfiguration.EndpointName);
             builder.TypesToIncludeInScan(typesToInclude);
             builder.CustomConfigurationSource(configSource);
             builder.EnableInstallers();
@@ -70,13 +66,13 @@
 
             var types = assemblies.Assemblies
                 //exclude all test types by default
-                                  .Where(a =>
-                                  {
-                                      var references = a.GetReferencedAssemblies();
+                .Where(a =>
+                {
+                    var references = a.GetReferencedAssemblies();
 
-                                      return references.All(an => an.Name != "nunit.framework");
-                                  })
-                                  .SelectMany(a => a.GetTypes());
+                    return references.All(an => an.Name != "nunit.framework");
+                })
+                .SelectMany(a => a.GetTypes());
 
 
             types = types.Union(GetNestedTypeRecursive(endpointConfiguration.BuilderType.DeclaringType, endpointConfiguration.BuilderType));
@@ -90,18 +86,22 @@
         {
             if (rootType == null)
             {
-                throw new InvalidOperationException("Make sure you nest the endpoint infrastructure inside the TestFixture as nested classes");    
+                throw new InvalidOperationException("Make sure you nest the endpoint infrastructure inside the TestFixture as nested classes");
             }
 
             yield return rootType;
 
             if (typeof(IEndpointConfigurationFactory).IsAssignableFrom(rootType) && rootType != builderType)
+            {
                 yield break;
+            }
 
             foreach (var nestedType in rootType.GetNestedTypes(BindingFlags.Instance | BindingFlags.Static | BindingFlags.Public | BindingFlags.NonPublic).SelectMany(t => GetNestedTypeRecursive(t, builderType)))
             {
                 yield return nestedType;
             }
         }
+
+        List<Type> typesToInclude;
     }
 }

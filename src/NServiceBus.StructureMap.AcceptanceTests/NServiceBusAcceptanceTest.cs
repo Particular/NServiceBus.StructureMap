@@ -1,7 +1,8 @@
 namespace NServiceBus.AcceptanceTests
 {
     using System.Linq;
-    using AcceptanceTesting.Customization;
+    using System.Threading;
+    using NServiceBus.AcceptanceTesting.Customization;
     using NUnit.Framework;
 
     /// <summary>
@@ -24,12 +25,12 @@ namespace NServiceBus.AcceptanceTests
 
                 var endpointBuilder = classAndEndpoint.Split('+').Last();
 
-                
-                testName = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(testName);
-              
+
+                testName = Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(testName);
+
                 testName = testName.Replace("_", "");
 
-                return testName +"."+ endpointBuilder;
+                return testName + "." + endpointBuilder;
             };
         }
     }
