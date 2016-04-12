@@ -10,7 +10,7 @@
     <projectUrl>$projectUrl$</projectUrl>
     <iconUrl>$iconUrl$</iconUrl>
     <requireLicenseAcceptance>$requireLicenseAcceptance$</requireLicenseAcceptance>
-    <description>The StructureMap Container for the NServiceBus</description>
+    <description>The StructureMap Container for NServiceBus</description>
     <releaseNotes></releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>$tags$</tags>
