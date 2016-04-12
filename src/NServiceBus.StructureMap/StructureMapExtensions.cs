@@ -1,6 +1,7 @@
 namespace NServiceBus
 {
     using Container;
+    using global::StructureMap;
     using StructureMap;
 
     /// <summary>
