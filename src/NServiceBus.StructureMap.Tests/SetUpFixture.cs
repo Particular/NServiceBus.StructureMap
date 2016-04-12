@@ -1,4 +1,5 @@
 ﻿using NServiceBus.ContainerTests;
+using NServiceBus.StructureMap;
 using NUnit.Framework;
 
 [SetUpFixture]
