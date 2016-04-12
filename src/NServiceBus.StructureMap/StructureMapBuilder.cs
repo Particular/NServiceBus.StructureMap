@@ -2,7 +2,6 @@
 {
     using Container;
     using global::StructureMap;
-    using StructureMap;
     using Settings;
 
     /// <summary>
