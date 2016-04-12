@@ -1,7 +1,7 @@
 namespace NServiceBus
 {
     using global::StructureMap;
-    using NServiceBus.Container;
+    using Container;
 
     /// <summary>
     /// Extension to pass an existing StructureMap <see cref="IContainer"/> instance.

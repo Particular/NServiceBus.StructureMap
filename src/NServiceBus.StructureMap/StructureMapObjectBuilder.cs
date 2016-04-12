@@ -163,5 +163,5 @@ class StructureMapObjectBuilder : IContainer
     }
 
     StructureMap.IContainer container;
-    IDictionary<Type, Instance> configuredInstances = new Dictionary<Type, Instance>();
+    Dictionary<Type, Instance> configuredInstances = new Dictionary<Type, Instance>();
 }
