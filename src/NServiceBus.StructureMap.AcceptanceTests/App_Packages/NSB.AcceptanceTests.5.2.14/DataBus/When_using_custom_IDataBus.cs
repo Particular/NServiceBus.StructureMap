@@ -61,6 +61,8 @@
         {
             public Sender()
             {
+                // Modification from 5.2.5. Needed?
+                // EndpointSetup<DefaultServer>(b => b.RegisterComponents(r => r.ConfigureComponent<MyDataBus>(DependencyLifecycle.SingleInstance)))
                 EndpointSetup<DefaultServer>(b => b.RegisterComponents(r => r.RegisterSingleton<IDataBus>(new MyDataBus())))
                     .AddMapping<MyMessageWithLargePayload>(typeof(Receiver));
             }
@@ -70,6 +72,7 @@
         {
             public Receiver()
             {
+                // EndpointSetup<DefaultServer>(b => b.RegisterComponents(r => r.ConfigureComponent<MyDataBus>(DependencyLifecycle.SingleInstance)));
                 EndpointSetup<DefaultServer>(b => b.RegisterComponents(r => r.RegisterSingleton<IDataBus>(new MyDataBus())));
             }
 
