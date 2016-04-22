@@ -59,7 +59,6 @@
 
             protected override void Setup(FeatureConfigurationContext context)
             {
-                context.Container.ConfigureComponent<Context>(DependencyLifecycle.InstancePerCall);
                 context.Container.ConfigureProperty<Context>(c => c.NotSet, notSet);
             }
         }
