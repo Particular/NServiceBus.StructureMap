@@ -9,13 +9,17 @@
 
     class StructureMapObjectBuilder : IContainer
     {
-        public StructureMapObjectBuilder()
+        public StructureMapObjectBuilder() : this(new Container(), true)
         {
-            container = new Container();
         }
 
-        public StructureMapObjectBuilder(global::StructureMap.IContainer container)
+        public StructureMapObjectBuilder(global::StructureMap.IContainer container) : this(container, false)
         {
+        }
+
+        public StructureMapObjectBuilder(global::StructureMap.IContainer container, bool owned)
+        {
+            this.owned = owned;
             this.container = container;
         }
 
@@ -24,9 +28,19 @@
             //Injected at compile time
         }
 
+        void DisposeManaged()
+        {
+            if (!owned)
+            {
+                return;
+            }
+
+            container?.Dispose();
+        }
+
         public IContainer BuildChildContainer()
         {
-            return new StructureMapObjectBuilder(container.GetNestedContainer());
+            return new StructureMapObjectBuilder(container.GetNestedContainer(), true);
         }
 
         public object Build(Type typeToBuild)
@@ -165,5 +179,6 @@
 
         global::StructureMap.IContainer container;
         Dictionary<Type, Instance> configuredInstances = new Dictionary<Type, Instance>();
+        bool owned;
     }
 }

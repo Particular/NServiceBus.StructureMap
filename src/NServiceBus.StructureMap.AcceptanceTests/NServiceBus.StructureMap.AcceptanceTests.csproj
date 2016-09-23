@@ -50,6 +50,10 @@
       <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="StructureMap, Version=4.3.0.449, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StructureMap.4.4.0\lib\net45\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -65,6 +69,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ContainerDecorator.cs" />
+    <Compile Include="When_using_externally_owned_container.cs" />
     <Compile Include="DefaultServer.cs" />
     <Compile Include="NServiceBusAcceptanceTest.cs" />
     <Compile Include="When_setting_properties_explicitly_via_the_container.cs" />

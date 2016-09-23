@@ -71,6 +71,10 @@
       <HintPath>..\packages\NUnit.3.2.1\lib\net45\nunit.framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="StructureMap, Version=4.3.0.449, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\StructureMap.4.4.0\lib\net45\StructureMap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -90,6 +94,7 @@
     <Compile Include="App_Packages\NSB.ContainerTests.6.0.0-rc0001\When_querying_for_registered_components.cs" />
     <Compile Include="App_Packages\NSB.ContainerTests.6.0.0-rc0001\When_registering_components.cs" />
     <Compile Include="App_Packages\NSB.ContainerTests.6.0.0-rc0001\When_using_nested_containers.cs" />
+    <Compile Include="DisposeTests.cs" />
     <Compile Include="SetUpFixture.cs" />
     <Compile Include="ShouldNotDisposeTheUnicastBus.cs" />
   </ItemGroup>
