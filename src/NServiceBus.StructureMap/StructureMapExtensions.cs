@@ -13,7 +13,7 @@ namespace NServiceBus
         /// </summary>
         public static void ExistingContainer(this ContainerCustomizations customizations, IContainer container)
         {
-            customizations.Settings.Set("ExistingContainer", container);
+            customizations.Settings.Set<StructureMapBuilder.ContainerHolder>(new StructureMapBuilder.ContainerHolder(container));
         }
     }
 }
