@@ -46,7 +46,7 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
     /// </summary>
     public NServiceBus.ObjectBuilder.Common.IContainer BuildChildContainer()
     {
-        return new StructureMapObjectBuilder(container.GetNestedContainer(), false);
+        return new StructureMapObjectBuilder(container.GetNestedContainer(), true);
     }
 
     public object Build(Type typeToBuild)

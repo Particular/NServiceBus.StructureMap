@@ -1,10 +1,8 @@
 ﻿namespace NServiceBus.AcceptanceTests
 {
-    using System.Threading.Tasks;
     using AcceptanceTesting;
-    using global::StructureMap;
-    using NServiceBus.AcceptanceTests;
-    using NServiceBus.AcceptanceTests.EndpointTemplates;
+    using StructureMap;
+    using EndpointTemplates;
     using NUnit.Framework;
 
     public class When_using_externally_owned_container : NServiceBusAcceptanceTest
