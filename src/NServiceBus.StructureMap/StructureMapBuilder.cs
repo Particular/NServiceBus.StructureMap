@@ -1,7 +1,7 @@
 ﻿namespace NServiceBus
 {
     using Container;
-    using global::StructureMap;
+    using StructureMap;
     using Settings;
 
     /// <summary>
@@ -32,7 +32,7 @@
             {
                 ExistingContainer = container;
             }
- 
+
             public IContainer ExistingContainer { get; }
         }
     }

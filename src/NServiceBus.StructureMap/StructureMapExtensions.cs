@@ -1,6 +1,6 @@
 namespace NServiceBus
 {
-    using NServiceBus.Container;
+    using Container;
     using StructureMap;
 
     /// <summary>

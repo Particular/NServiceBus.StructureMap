@@ -4,9 +4,9 @@
     using System.Collections;
     using System.Collections.Generic;
     using System.Reflection;
-    using global::StructureMap;
-    using global::StructureMap.Pipeline;
-    using global::StructureMap.Query;
+    using StructureMap;
+    using StructureMap.Pipeline;
+    using StructureMap.Query;
 
     class ContainerDecorator : IContainer
     {
