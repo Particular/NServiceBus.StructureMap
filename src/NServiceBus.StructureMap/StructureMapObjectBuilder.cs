@@ -9,14 +9,19 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
 {
     IContainer container;
     IDictionary<Type, Instance> configuredInstances = new Dictionary<Type, Instance>();
+    bool owned;
 
-    public StructureMapObjectBuilder()
+    public StructureMapObjectBuilder() : this(new Container(), true)
     {
-        container = new Container();
     }
 
-    public StructureMapObjectBuilder(IContainer container)
+    public StructureMapObjectBuilder(IContainer container) : this(container, false)
     {
+    }
+
+    public StructureMapObjectBuilder(IContainer container, bool owned)
+    {
+        this.owned = owned;
         this.container = container;
     }
 
@@ -25,13 +30,23 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
         //Injected at compile time
     }
 
+    void DisposeManaged()
+    {
+        if (!owned)
+        {
+            return;
+        }
+
+        container?.Dispose();
+    }
+
     /// <summary>
     /// Returns a child instance of the container to facilitate deterministic disposal
     /// of all resources built by the child container.
     /// </summary>
     public NServiceBus.ObjectBuilder.Common.IContainer BuildChildContainer()
     {
-        return new StructureMapObjectBuilder(container.GetNestedContainer());
+        return new StructureMapObjectBuilder(container.GetNestedContainer(), true);
     }
 
     public object Build(Type typeToBuild)

@@ -36,6 +36,14 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="StructureMap, Version=4.1.3.394, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.4.1.3.394\lib\net40\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap.Net4, Version=4.1.3.394, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\structuremap.4.1.3.394\lib\net40\StructureMap.Net4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -52,6 +60,7 @@
     <Compile Include="App_Packages\NSB.ContainerTests.5.0.0\When_registering_components.cs" />
     <Compile Include="App_Packages\NSB.ContainerTests.5.0.0\When_releasing_components.cs" />
     <Compile Include="App_Packages\NSB.ContainerTests.5.0.0\When_using_nested_containers.cs" />
+    <Compile Include="DisposeTests.cs" />
     <Compile Include="SetUpFixture.cs" />
     <Compile Include="ShouldNotDisposeTheUnicastBus.cs" />
   </ItemGroup>
@@ -63,6 +72,9 @@
       <Project>{C05E5B87-EB74-4A3F-B4FC-AFDD28570850}</Project>
       <Name>NServiceBus.StructureMap</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,7 +1,7 @@
 ﻿namespace NServiceBus
 {
     using Container;
-    using global::StructureMap;
+    using StructureMap;
     using Settings;
 
     /// <summary>
@@ -16,13 +16,24 @@
         /// <returns>The new container wrapper.</returns>
         public override ObjectBuilder.Common.IContainer CreateContainer(ReadOnlySettings settings)
         {
-            IContainer existingContainer;
-            if (settings.TryGet("ExistingContainer", out existingContainer))
+            ContainerHolder containerHolder;
+
+            if (settings.TryGet(out containerHolder))
             {
-                return new StructureMapObjectBuilder(existingContainer);
+                return new StructureMapObjectBuilder(containerHolder.ExistingContainer);
             }
 
             return new StructureMapObjectBuilder();
+        }
+
+        internal class ContainerHolder
+        {
+            public ContainerHolder(IContainer container)
+            {
+                ExistingContainer = container;
+            }
+
+            public IContainer ExistingContainer { get; }
         }
     }
 }
