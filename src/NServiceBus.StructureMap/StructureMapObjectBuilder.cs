@@ -19,7 +19,7 @@ class StructureMapObjectBuilder : NServiceBus.ObjectBuilder.Common.IContainer
     {
     }
 
-    public StructureMapObjectBuilder(global::StructureMap.IContainer container, bool owned)
+    public StructureMapObjectBuilder(IContainer container, bool owned)
     {
         this.owned = owned;
         this.container = container;
