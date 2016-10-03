@@ -228,6 +228,11 @@
             decorated.Release(@object);
         }
 
+        public IContainer GetNestedContainer(TypeArguments arguments)
+        {
+            return decorated.GetNestedContainer(arguments);
+        }
+
         public IModel Model => decorated.Model;
 
         public string Name
@@ -239,6 +244,12 @@
         public ContainerRole Role => decorated.Role;
         public string ProfileName => decorated.ProfileName;
         public ITransientTracking TransientTracking => decorated.TransientTracking;
+
+        public DisposalLock DisposalLock
+        {
+            get { return decorated.DisposalLock; }
+            set { decorated.DisposalLock = value; }
+        }
 
         IContainer decorated;
     }
