@@ -242,12 +242,17 @@
             {
             }
 
+            public IContainer GetNestedContainer(TypeArguments arguments)
+            {
+                return null;
+            }
 
             public IModel Model { get; }
             public string Name { get; set; }
             public ContainerRole Role { get; }
             public string ProfileName { get; }
             public ITransientTracking TransientTracking { get; }
+            public DisposalLock DisposalLock { get; set; }
         }
     }
 }
