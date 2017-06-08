@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2017
+VisualStudioVersion = 15.0.26430.12
+MinimumVisualStudioVersion = 15.0.26430.12
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBus.StructureMap", "NServiceBus.StructureMap\NServiceBus.StructureMap.csproj", "{C05E5B87-EB74-4A3F-B4FC-AFDD28570850}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBus.StructureMap.AcceptanceTests", "NServiceBus.StructureMap.AcceptanceTests\NServiceBus.StructureMap.AcceptanceTests.csproj", "{FB342C36-9924-4E24-A484-CEE0C770BDBF}"
