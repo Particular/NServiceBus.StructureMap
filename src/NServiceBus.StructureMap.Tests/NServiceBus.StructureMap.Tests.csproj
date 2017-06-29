@@ -10,7 +10,7 @@
     <Compile Remove="NServiceBus.ObjectBuilder.StructureMap.approved.cs" />
     <PackageReference Include="ApprovalTests" Version="3.0.13" />
     <PackageReference Include="ApprovalUtilities" Version="3.0.13" />
-    <PackageReference Include="StructureMap" Version="4.5.0" />
+    <PackageReference Include="StructureMap" Version="4.5.1" />
     <PackageReference Include="Mono.Cecil" Version="0.10.0-beta6" />
     <PackageReference Include="NServiceBus" Version="6.3.4" />
     <PackageReference Include="NUnit" Version="3.7.1" />
