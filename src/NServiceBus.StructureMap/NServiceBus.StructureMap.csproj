@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net452;netstandard2.0</TargetFramework>
+    <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
     <AssemblyName>NServiceBus.ObjectBuilder.StructureMap</AssemblyName>
     <NuSpecFileName>NServiceBus.StructureMap</NuSpecFileName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
@@ -18,7 +18,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="StructureMap" Version="4.0.0" />
+    <PackageReference Include="StructureMap" Version="4.0.0">
+      <NoWarn>NU1603,NU1701</NoWarn>
+    </PackageReference>
     <PackageReference Include="Janitor.Fody" Version="1.5.1" PrivateAssets="all" />
     <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0051" />
     <PackageReference Include="Obsolete.Fody" Version="4.2.4" PrivateAssets="all" />
