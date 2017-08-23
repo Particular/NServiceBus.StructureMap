@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net452</TargetFramework>
+    <TargetFramework>net452;netstandard2.0</TargetFramework>
     <AssemblyName>NServiceBus.ObjectBuilder.StructureMap</AssemblyName>
     <NuSpecFileName>NServiceBus.StructureMap</NuSpecFileName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
