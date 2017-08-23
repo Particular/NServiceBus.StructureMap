@@ -18,9 +18,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="StructureMap" Version="4.0.0">
-      <NoWarn>NU1603,NU1701</NoWarn>
-    </PackageReference>
+    <PackageReference Include="StructureMap" Version="4.3.0" />
     <PackageReference Include="Janitor.Fody" Version="1.5.1" PrivateAssets="all" />
     <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0051" />
     <PackageReference Include="Obsolete.Fody" Version="4.2.4" PrivateAssets="all" />
