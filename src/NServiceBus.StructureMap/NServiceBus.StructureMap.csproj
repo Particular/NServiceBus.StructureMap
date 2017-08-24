@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net452;netstandard2.0</TargetFrameworks>
     <AssemblyName>NServiceBus.ObjectBuilder.StructureMap</AssemblyName>
-    <NuSpecFileName>NServiceBus.StructureMap</NuSpecFileName>
+    <PackageId>NServiceBus.StructureMap</PackageId>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <DebugType>full</DebugType>
     <DebugSymbols>True</DebugSymbols>
@@ -23,7 +23,7 @@
     <PackageReference Include="NServiceBus" Version="7.0.0-alpharelease0051" />
     <PackageReference Include="Obsolete.Fody" Version="4.2.4" PrivateAssets="all" />
     <PackageReference Include="Particular.CodeRules" Version="0.2.0" PrivateAssets="all" />
-    <PackageReference Include="Fody" Version="2.1.2" PrivateAssets="all" />    
+    <PackageReference Include="Fody" Version="2.1.2" PrivateAssets="all" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\GitVersion.yml" Link="GitVersion.yml" />
