@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2017
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 15.0.26430.12
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBus.StructureMap", "NServiceBus.StructureMap\NServiceBus.StructureMap.csproj", "{C05E5B87-EB74-4A3F-B4FC-AFDD28570850}"
 EndProject
@@ -30,5 +30,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	    SolutionGuid = {694EA83B-6925-4E3B-8DEC-68A85453290E}
 	EndGlobalSection
 EndGlobal
