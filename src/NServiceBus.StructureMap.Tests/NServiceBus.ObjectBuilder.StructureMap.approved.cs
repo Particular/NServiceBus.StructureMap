@@ -2,8 +2,10 @@
 [assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute("NServiceBus.StructureMap.Tests")]
 [assembly: System.Runtime.InteropServices.ComVisibleAttribute(false)]
 [assembly: System.Runtime.Versioning.TargetFrameworkAttribute(".NETFramework,Version=v4.5.2", FrameworkDisplayName=".NET Framework 4.5.2")]
+
 namespace NServiceBus
 {
+    
     public class StructureMapBuilder : NServiceBus.Container.ContainerDefinition
     {
         public StructureMapBuilder() { }
