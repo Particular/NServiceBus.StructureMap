@@ -5,8 +5,6 @@
     <AssemblyName>NServiceBus.ObjectBuilder.StructureMap</AssemblyName>
     <PackageId>NServiceBus.StructureMap</PackageId>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <DebugType>full</DebugType>
-    <DebugSymbols>True</DebugSymbols>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <OutputPath>..\..\binaries\</OutputPath>
