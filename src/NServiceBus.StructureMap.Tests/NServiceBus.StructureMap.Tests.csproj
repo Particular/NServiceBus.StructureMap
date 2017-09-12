@@ -12,7 +12,6 @@
     <Compile Remove="NServiceBus.ObjectBuilder.StructureMap.approved.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NServiceBus.ContainerTests.Sources" Version="7.0.0-*" />
     <PackageReference Include="StructureMap" Version="4.*" />
     <PackageReference Include="Mono.Cecil" Version="0.10.0-beta6" />
