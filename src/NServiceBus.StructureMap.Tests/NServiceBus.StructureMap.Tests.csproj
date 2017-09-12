@@ -7,14 +7,16 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NServiceBus.StructureMap\NServiceBus.StructureMap.csproj" />
     <Compile Remove="NServiceBus.ObjectBuilder.StructureMap.approved.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
+    <PackageReference Include="NServiceBus.ContainerTests.Sources" Version="7.0.0-*" />
     <PackageReference Include="StructureMap" Version="4.5.1" />
     <PackageReference Include="Mono.Cecil" Version="0.10.0-*" />
-    <PackageReference Include="NServiceBus" Version="7.0.0-*" />
     <PackageReference Include="NUnit" Version="3.7.1" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.7.0" />
-    <PackageReference Include="NServiceBus.ContainerTests.Sources" Version="7.0.0-*" />
-    <ProjectReference Include="..\NServiceBus.StructureMap\NServiceBus.StructureMap.csproj" />
   </ItemGroup>
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp2.0'">
     <Compile Remove="APIApprovals.cs" />
