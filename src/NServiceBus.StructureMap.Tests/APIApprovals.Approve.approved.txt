@@ -2,6 +2,14 @@
 [assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute("NServiceBus.StructureMap.Tests")]
 [assembly: System.Runtime.InteropServices.ComVisibleAttribute(false)]
 [assembly: System.Runtime.Versioning.TargetFrameworkAttribute(".NETFramework,Version=v4.5.2", FrameworkDisplayName=".NET Framework 4.5.2")]
+namespace NServiceBus.Features
+{
+    public class StructureMapDiagnostics : NServiceBus.Features.Feature
+    {
+        public StructureMapDiagnostics() { }
+        protected override void Setup(NServiceBus.Features.FeatureConfigurationContext context) { }
+    }
+}
 namespace NServiceBus
 {
     public class StructureMapBuilder : NServiceBus.Container.ContainerDefinition
