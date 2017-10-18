@@ -1,13 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2017
-VisualStudioVersion = 15.0.26730.3
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 15.0.26430.12
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBus.StructureMap", "NServiceBus.StructureMap\NServiceBus.StructureMap.csproj", "{C05E5B87-EB74-4A3F-B4FC-AFDD28570850}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.StructureMap", "NServiceBus.StructureMap\NServiceBus.StructureMap.csproj", "{C05E5B87-EB74-4A3F-B4FC-AFDD28570850}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBus.StructureMap.AcceptanceTests", "NServiceBus.StructureMap.AcceptanceTests\NServiceBus.StructureMap.AcceptanceTests.csproj", "{FB342C36-9924-4E24-A484-CEE0C770BDBF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.StructureMap.AcceptanceTests", "NServiceBus.StructureMap.AcceptanceTests\NServiceBus.StructureMap.AcceptanceTests.csproj", "{FB342C36-9924-4E24-A484-CEE0C770BDBF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NServiceBus.StructureMap.Tests", "NServiceBus.StructureMap.Tests\NServiceBus.StructureMap.Tests.csproj", "{3D880FCA-D2DA-4AB9-8017-BA8B7C86D359}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.StructureMap.Tests", "NServiceBus.StructureMap.Tests\NServiceBus.StructureMap.Tests.csproj", "{3D880FCA-D2DA-4AB9-8017-BA8B7C86D359}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{034F95CF-5379-478D-88E3-196E98DE2F62}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		..\GitVersion.yml = ..\GitVersion.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +38,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-	    SolutionGuid = {694EA83B-6925-4E3B-8DEC-68A85453290E}
+		    SolutionGuid = {694EA83B-6925-4E3B-8DEC-68A85453290E}
+		SolutionGuid = {D84623C5-9C09-42A3-99C0-428DC0BAF13A}
 	EndGlobalSection
 EndGlobal
