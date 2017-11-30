@@ -33,6 +33,7 @@
             {
                 EndpointSetup<DefaultServer>((config, desc) =>
                 {
+                    config.SendFailedMessagesTo("error");
                     var container = new Container();
                     var scopeDecorator = new ContainerDecorator(container);
 
