@@ -20,8 +20,18 @@
             ContainerHolder containerHolder;
             if (settings.TryGet(out containerHolder))
             {
+                settings.AddStartupDiagnosticsSection("NServiceBus.StructureMap", new
+                {
+                    UsingExistingContainer = true
+                });
+
                 return new StructureMapObjectBuilder(containerHolder.ExistingContainer);
             }
+
+            settings.AddStartupDiagnosticsSection("NServiceBus.StructureMap", new
+            {
+                UsingExistingContainer = false
+            });
 
             return new StructureMapObjectBuilder();
         }
