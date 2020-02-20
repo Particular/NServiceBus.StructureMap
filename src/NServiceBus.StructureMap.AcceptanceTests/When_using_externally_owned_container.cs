@@ -37,7 +37,9 @@
                     var container = new Container();
                     var scopeDecorator = new ContainerDecorator(container);
 
+#pragma warning disable 0618
                     config.UseContainer<StructureMapBuilder>(c => c.ExistingContainer(scopeDecorator));
+#pragma warning restore 0618
 
                     var context = (Context)desc.ScenarioContext;
                     context.Decorator = scopeDecorator;

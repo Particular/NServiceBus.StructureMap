@@ -38,7 +38,9 @@
 
             builder.DisableFeature<TimeoutManager>();
             builder.UsePersistence<InMemoryPersistence>();
+#pragma warning disable 0618
             builder.UseContainer<StructureMapBuilder>();
+#pragma warning restore 0618
 
             builder.Recoverability().Delayed(delayedRetries => delayedRetries.NumberOfRetries(0));
             builder.Recoverability().Immediate(immediateRetries => immediateRetries.NumberOfRetries(0));
