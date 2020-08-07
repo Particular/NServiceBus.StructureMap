@@ -1,2 +1,1 @@
-NServiceBus.StructureMap
-========================
+# NServiceBus.StructureMap
