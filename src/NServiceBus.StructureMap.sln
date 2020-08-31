@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
 MinimumVisualStudioVersion = 15.0.26430.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.StructureMap", "NServiceBus.StructureMap\NServiceBus.StructureMap.csproj", "{C05E5B87-EB74-4A3F-B4FC-AFDD28570850}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.StructureMap.AcceptanceTests", "NServiceBus.StructureMap.AcceptanceTests\NServiceBus.StructureMap.AcceptanceTests.csproj", "{FB342C36-9924-4E24-A484-CEE0C770BDBF}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NServiceBus.StructureMap.Tests", "NServiceBus.StructureMap.Tests\NServiceBus.StructureMap.Tests.csproj", "{3D880FCA-D2DA-4AB9-8017-BA8B7C86D359}"
 EndProject
@@ -25,10 +23,6 @@ Global
 		{C05E5B87-EB74-4A3F-B4FC-AFDD28570850}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C05E5B87-EB74-4A3F-B4FC-AFDD28570850}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C05E5B87-EB74-4A3F-B4FC-AFDD28570850}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FB342C36-9924-4E24-A484-CEE0C770BDBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FB342C36-9924-4E24-A484-CEE0C770BDBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FB342C36-9924-4E24-A484-CEE0C770BDBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FB342C36-9924-4E24-A484-CEE0C770BDBF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3D880FCA-D2DA-4AB9-8017-BA8B7C86D359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D880FCA-D2DA-4AB9-8017-BA8B7C86D359}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D880FCA-D2DA-4AB9-8017-BA8B7C86D359}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,5 +33,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {694EA83B-6925-4E3B-8DEC-68A85453290E}
-    EndGlobalSection
+	EndGlobalSection
 EndGlobal
