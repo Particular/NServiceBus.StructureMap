@@ -1,13 +1,13 @@
-[assembly: System.CLSCompliantAttribute(true)]
-[assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute("NServiceBus.StructureMap.Tests")]
-[assembly: System.Runtime.InteropServices.ComVisibleAttribute(false)]
+[assembly: System.CLSCompliant(true)]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("NServiceBus.StructureMap.Tests")]
+[assembly: System.Runtime.InteropServices.ComVisible(false)]
 namespace NServiceBus
 {
-    [System.ObsoleteAttribute(@"StructureMap is no longer supported via the NServiceBus.StructureMap adapter. NServiceBus directly supports all containers compatible with Microsoft.Extensions.DependencyInjection.Abstractions via the externally managed container mode. Will be removed in version 9.0.0.", true)]
+    [System.Obsolete(@"StructureMap is no longer supported via the NServiceBus.StructureMap adapter. NServiceBus directly supports all containers compatible with Microsoft.Extensions.DependencyInjection.Abstractions via the externally managed container mode. Will be removed in version 9.0.0.", true)]
     public class StructureMapBuilder
     {
         public StructureMapBuilder() { }
     }
-    [System.ObsoleteAttribute(@"StructureMap is no longer supported via the NServiceBus.StructureMap adapter. NServiceBus directly supports all containers compatible with Microsoft.Extensions.DependencyInjection.Abstractions via the externally managed container mode. Will be removed in version 9.0.0.", true)]
-    public class static StructureMapExtensions { }
+    [System.Obsolete(@"StructureMap is no longer supported via the NServiceBus.StructureMap adapter. NServiceBus directly supports all containers compatible with Microsoft.Extensions.DependencyInjection.Abstractions via the externally managed container mode. Will be removed in version 9.0.0.", true)]
+    public static class StructureMapExtensions { }
 }

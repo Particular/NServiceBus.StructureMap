@@ -9,7 +9,10 @@ public class APIApprovals
     [Test]
     public void Approve()
     {
-        var publicApi = ApiGenerator.GeneratePublicApi(typeof(StructureMapInternalType).Assembly, excludeAttributes: new[] { "System.Runtime.Versioning.TargetFrameworkAttribute" });
+        var publicApi = typeof(StructureMapInternalType).Assembly.GeneratePublicApi(new ApiGeneratorOptions
+        {
+            ExcludeAttributes = new[] { "System.Runtime.Versioning.TargetFrameworkAttribute", "System.Reflection.AssemblyMetadataAttribute" }
+        });
         Approver.Verify(publicApi);
     }
 }
