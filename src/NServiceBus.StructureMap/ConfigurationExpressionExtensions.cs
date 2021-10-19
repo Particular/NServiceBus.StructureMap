@@ -8,6 +8,6 @@ static class ConfigurationExpressionExtensions
     /// </summary>
     public static void EnableSetterInjectionFor(this ConfigurationExpression configuration, Type pluginType)
     {
-        configuration.Policies.SetAllProperties(x =>x.TypeMatches(t=>t == pluginType));
+        configuration.Policies.SetAllProperties(x => x.TypeMatches(t => t == pluginType));
     }
 }
