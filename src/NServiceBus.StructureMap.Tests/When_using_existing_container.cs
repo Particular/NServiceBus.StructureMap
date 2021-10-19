@@ -1,9 +1,9 @@
-﻿using NUnit.Framework;
-using System;
-using System.Threading.Tasks;
-
-namespace NServiceBus.StructureMap.Tests
+﻿namespace NServiceBus.StructureMap.Tests
 {
+    using System;
+    using System.Threading.Tasks;
+    using NUnit.Framework;
+
     [TestFixture]
     public class When_using_existing_container
     {

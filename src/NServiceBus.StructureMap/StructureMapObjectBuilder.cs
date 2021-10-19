@@ -28,7 +28,9 @@
             //Injected at compile time
         }
 
+#pragma warning disable IDE0051 // Remove unused private members
         void DisposeManaged()
+#pragma warning restore IDE0051 // Remove unused private members
         {
             if (!owned)
             {
@@ -167,9 +169,9 @@
                     return new SingletonLifecycle();
                 case DependencyLifecycle.InstancePerUnitOfWork:
                     return new ContainerLifecycle();
+                default:
+                    throw new ArgumentException("Unhandled lifecycle - " + dependencyLifecycle);
             }
-
-            throw new ArgumentException("Unhandled lifecycle - " + dependencyLifecycle);
         }
 
         static IEnumerable<Type> GetAllInterfacesImplementedBy(Type t)
